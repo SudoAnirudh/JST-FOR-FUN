@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style='background-color: cyan;'>
+    <div style='display: flex; justify-content: center; align-items: center; flex-direction: column;'>
+        
+    <h1>Replit Creates #13 - Fears</h1>
+    <h2>What are fears?</h2>
+    <p>Everyone has different fears. Arachnophobia, claustrophobia, xenophobia, and many, many more.</p>
+    <p>With all of those fears, one of the most common is Arachnophobia....</p>
+    <button onClick='more()' id='more'>Start!</button>
+        <p id='amount'>There are currently no bugs or spiders</p>
+        <p id='badness'></p>
+    </div>
+    
+  <script src="https://replit.com/public/js/replit-badge.js" theme="blurple" defer></script> 
+    <script type='text/javascript' src='bug-min.js'></script>
+  <script type='text/javascript'>
+var targethead = window.document.getElementsByTagName("head")[0],
+loadedSpiders = false,
+jst = window.document.createElement("script");
+jst.async = true;
+jst.type = "text/javascript";
+jst.src = "/bug-min.js";
+
+let minBugsAmount = -20
+let maxBugsAmount = 0
+let bugs, spiders
+let moreButton = document.getElementById('more')
+let bugsAmountText = document.getElementById('amount')
+let badnessText = document.getElementById('badness')
+
+function more() {
+    minBugsAmount += 20
+    maxBugsAmount += 20
+    if (maxBugsAmount === 20) {
+        moreButton.textContent = 'ARGH'
+    }
+    bugs = new BugController({minBugsAmount, maxBugsAmount});
+    spiders = new SpiderController({minBugsAmount, maxBugsAmount});
+    moreButton.textContent += '!'
+    bugsAmountText.textContent = `There are between ${minBugsAmount} and ${maxBugsAmount} bugs! There is also the same range of spiders!`
+    if (maxBugsAmount > 20000) {
+        badnessText.textContent = 'Oh no. How can your computer handle this amount of bugs?! Also, why are you still watching this terrifying scene? Oh, you used an autoclicker and passed out... RIP'
+    } else if (maxBugsAmount > 10000) {
+        badnessText.textContent = 'It\'s not so bad... just don\'t look up, or down, or ARGH, THEY  ARE EVERYWHERE!!!!!'
+    } else if (maxBugsAmount > 4000) {
+        badnessText.textContent = 'That\'s some serious buggification!'
+    } else if (maxBugsAmount > 1000) {
+        badnessText.textContent = 'Hey, I\'m brave. This isn\'t remotely scarY!!!! ARGH!!!! HELP, THEY\'RE CRAWLING ON MY SKIN!'
+    } else if (maxBugsAmount > 100 ) {
+        badnessText.textContent = 'This is quite satisfying to watch!'
+    } else if (maxBugsAmount > 0) {
+        badnessText.textContent = 'Oh, that\'s not so bad'
+    }
+}
+            
+		</script>
+</body>
+
+</html>
